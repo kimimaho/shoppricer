@@ -53,6 +53,7 @@ class ExtractPrice implements ShouldQueue
             if(count($offres)>0)
        {
         foreach ($offres as  $offre) {
+
             $prix=$this->get_price($offre);
             if($prix != null)
            { $offre->update(["prixOffre"=>$prix]);}
@@ -63,12 +64,20 @@ class ExtractPrice implements ShouldQueue
 
     private function get_price(Offre $offre){
 
-
+            $url=$offre->urlOffre;
+            $selecteur="";
+            if(strpos($url,"boulanger.com") !=false){
+                $selecteur=".sale-price.currency";
+            }else{
+                if(strpos($url,"fnac") !=false){
+                    // $selecteur=".sale-price.currency";
+                }
+            }
         $productPairs = [
             'rum' => [
                 'own' => [
                     'url' => 'https://wwww.allendalewine.com/products/11262719/diplomatico-reserva-exclusiva',
-                    'selectorPath' => '.sale-price.currency'
+                    'selectorPath' => $selecteur
                 ],
                 'competitor1' => [
                     'url' => $offre->urlOffre,
