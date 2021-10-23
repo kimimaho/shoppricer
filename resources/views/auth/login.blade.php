@@ -37,8 +37,8 @@
 	<div class="container">
 
 		<ol class="breadcrumb">
-			<li><a href="index.html">Home</a></li>
-			<li class="active">User access</li>
+			<li><a href="#">Accueil</a></li>
+			<li class="active">Connexion</li>
 		</ol>
 
 		<div class="row">
@@ -63,7 +63,7 @@
 									<input type="email" name="email" value="{{old('email')}}" required autofocus class="form-control">
 								</div>
 								<div class="top-margin">
-									<label>Password <span class="text-danger">*</span></label>
+									<label>Mot de passe <span class="text-danger">*</span></label>
 									<input type="password" name="password" class="form-control" value="{{old('password')}}" required>
 								</div>
 

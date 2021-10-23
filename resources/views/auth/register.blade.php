@@ -35,8 +35,8 @@
 	<div class="container">
 
 		<ol class="breadcrumb">
-			<li><a href="index.html">Home</a></li>
-			<li class="active">Registration</li>
+			<li><a href="#">Accueil</a></li>
+			<li class="active">Inscription</li>
 		</ol>
 
 		<div class="row">
@@ -44,7 +44,7 @@
 			<!-- Article main content -->
 			<article class="col-xs-12 maincontent">
 				<header class="page-header">
-					<h1 class="page-title">Registration</h1>
+					<h1 class="page-title">Inscription</h1>
 				</header>
 				
 				<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
@@ -56,22 +56,22 @@
                             <form method="POST" action="{{ route('register') }}">
                               @csrf
 								<div class="top-margin">
-									<label>First Name</label>
+									<label>Nom et prénom</label>
 									<input type="text" class="form-control" name="name" value="{{old('name')}}" required >
 								</div>
 								
 								<div class="top-margin">
-									<label>Email Address <span class="text-danger">*</span></label>
+									<label>Email <span class="text-danger">*</span></label>
 									<input type="email" name="email" value="{{old('email')}}" required  class="form-control">
 								</div>
 
 								<div class="row top-margin">
 									<div class="col-sm-6">
-										<label>Password <span class="text-danger">*</span></label>
+										<label>Mot de passe <span class="text-danger">*</span></label>
 										<input type="password" name="password" value="{{old('password')}}" required  class="form-control">
 									</div>
 									<div class="col-sm-6">
-										<label>Confirm Password <span class="text-danger">*</span></label>
+										<label>Confirmation mot de passe <span class="text-danger">*</span></label>
                                         <input type="password" name="password_confirmation" value="{{old('password_confirmation')}}" required  class="form-control">
 
 									</div>
@@ -83,11 +83,11 @@
 									<div class="col-lg-8">
 										<!-- <label class="checkbox">
 											<input type="checkbox">  -->
-											I <a href="{{ route('login') }}">Se connecter</a>
+											 <a href="{{ route('login') }}">Se connecter</a>
 										<!-- </label>                         -->
 									</div>
 									<div class="col-lg-4 text-right">
-										<button class="btn btn-action" type="submit">Register</button>
+										<button class="btn btn-action" type="submit">Enregistrer</button>
 									</div>
 								</div>
 							</form>
