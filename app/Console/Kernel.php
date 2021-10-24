@@ -18,6 +18,7 @@ use GuzzleHttp\Client;
 use PHPHtmlParser\Dom;
 use CurrencyDetector\Detector;
 use Sunra\PhpSimple\HtmlDomParser;  
+use App\Jobs\ExtractPrice;
 
 
 
@@ -41,6 +42,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        // $schedule->job(new ExtractPrice())->everyFiveMinutes();
         $schedule->call(function () {
         //     $parametres=array('Referer'=>'', 'Proxy'=>'', 'BrowserName'=>'');
         //     $url="https://www.made-in-china.com/cs/hot-china-products/Cosmetic_Brush.html?gclid=EAIaIQobChMInIb05rT_8gIVUoFQBh3k6QOKEAAYAyAAEgLu2fD_BwE";
@@ -48,8 +50,7 @@ class Kernel extends ConsoleKernel
         //    echo($html); 
             // $url = "https://www.materiel.net/pc-portable/l409/";
             // $produit="ACER Nitro 5 AN515-57-5194";
-            // $html=$this->get_html();
-           
+            $html=$this->get_html();
             // print_r($html);
 
             // $tag=$this->getTag($html,"div",$produit);
@@ -83,7 +84,7 @@ class Kernel extends ConsoleKernel
     }
     private function get_html(){
 
-
+                ///echo "=========================";
         $productPairs = [
             'rum' => [
                 'own' => [
@@ -91,8 +92,8 @@ class Kernel extends ConsoleKernel
                     'selectorPath' => '.sale-price.currency'
                 ],
                 'competitor1' => [
-                    'url' => 'https://www.boulanger.com/ref/1158005',
-                    'selectorPath' => '.fix-price span.exponent'
+                    'url' => 'https://guyane.darty-dom.com/p/acer-aspire-3-a315-54k-54rc',
+                    'selectorPath' => '.product-price-container span.price-int'
                 ]
             ]
             # you can add as many product pairs as you wish

@@ -55,6 +55,7 @@ class ExtractPrice implements ShouldQueue
         foreach ($offres as  $offre) {
 
             $prix=$this->get_price($offre);
+            //  dd($prix);
             if($prix != null)
            { $offre->update(["prixOffre"=>$prix]);}
         }
@@ -67,21 +68,21 @@ class ExtractPrice implements ShouldQueue
             $url=$offre->urlOffre;
             $selecteur="";
             if(strpos($url,"boulanger.com") !=false){
-                $selecteur=".sale-price.currency";
+                $selecteur= '.fix-price span.exponent';
             }else{
-                if(strpos($url,"fnac") !=false){
-                    // $selecteur=".sale-price.currency";
+                if(strpos($url,"guyane.darty-dom.com") !=false){
+                    $selecteur='.product-price-container span.price-int';
                 }
             }
         $productPairs = [
             'rum' => [
                 'own' => [
-                    'url' => 'https://wwww.allendalewine.com/products/11262719/diplomatico-reserva-exclusiva',
-                    'selectorPath' => $selecteur
+                    'url' => 'https://www.boulanger.com/ref/1160631',
+                    'selectorPath' => ".fix-price span.exponent"
                 ],
                 'competitor1' => [
                     'url' => $offre->urlOffre,
-                    'selectorPath' => '.fix-price span.exponent'
+                    'selectorPath' =>$selecteur 
                 ]
             ]
             # you can add as many product pairs as you wish
@@ -98,7 +99,7 @@ class ExtractPrice implements ShouldQueue
         
                 $client = new Client();
                 $parser = new Dom;
-                        try { 
+                        // try { 
                         
                                 $request = $client->request('GET', $product['url']);
                                 $response = (string) $request->getBody();
@@ -106,16 +107,16 @@ class ExtractPrice implements ShouldQueue
                                 $price = $parser->find($product['selectorPath'])[0];
                                 $priceString = $price->text; 
                                 $fmt = new NumberFormatter( 'en_US', NumberFormatter::CURRENCY );
-                            } catch (\ErrorException $ee) {
-                                $priceString="";
-                                break;
-                            }
-                            catch(ConnectException $ge)
-                            {
+                //             } catch (\ErrorException $ee) {
+                //                 $priceString="";
+                //                 break;
+                //             }
+                //             catch(ConnectException $ge)
+                //             {
                                 
-                                break;
-                            }
-                $comparison[$productName][$provider] = [
+                //                 break;
+                //             }
+                 $comparison[$productName][$provider] = [
                     'currency' => $detector->getCurrency($priceString),
                     'prix' => $detector->getAmount($priceString),
                 ];     
@@ -123,6 +124,8 @@ class ExtractPrice implements ShouldQueue
             }
         }
         // echo json_encode($comparison);
+        // dd($comparison);
+        // dd($detector->getAmount($priceString) );
         return  $detector->getAmount($priceString) != null ? $detector->getAmount($priceString) : null ;
     }
 
