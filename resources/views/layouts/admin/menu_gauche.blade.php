@@ -70,15 +70,15 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-folder"></i>
               <p>
                 Repositionnements
-                <!-- <span class="right badge badge-danger">New</span> -->
+                 <span class="right badge badge-danger">New</span>
               </p>
             </a>
-          </li>
+          </li> --}}
 
 
           <!-- <li class="nav-item has-treeview menu-open"> -->
