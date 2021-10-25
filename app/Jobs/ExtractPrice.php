@@ -106,7 +106,7 @@ class ExtractPrice implements ShouldQueue
                                 $parser->loadStr($response);
                                 $price = $parser->find($product['selectorPath'])[0];
                                 $priceString = $price->text; 
-                                $fmt = new NumberFormatter( 'en_US', NumberFormatter::CURRENCY );
+                                // $fmt = new NumberFormatter( 'en_US', NumberFormatter::CURRENCY );
                 //             } catch (\ErrorException $ee) {
                 //                 $priceString="";
                 //                 break;
