@@ -24,7 +24,7 @@ class OffresImport implements ToModel
             'prixOffre'    => $row[2],
             'produit_id'     => $produit_id
         ];
-        dd($offre);
+        // dd($offre);
         return new Offre($offre);
     }
 }
