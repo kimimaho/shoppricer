@@ -18,11 +18,13 @@ class OffresImport implements ToModel
     {
         // $user = Auth::user()->id;
         $produit_id = Produit::where('nomProduit',  $row[3])->first()->id;
-        return new Offre([
+        $offre=[
             'nomOffre'    => $row[0],
             'urlOffre'    => $row[1],
             'prixOffre'    => $row[2],
-            'produit_id'     => $produit_id ,
-        ]);
+            'produit_id'     => $produit_id
+        ];
+        dd($offre);
+        return new Offre($offre);
     }
 }

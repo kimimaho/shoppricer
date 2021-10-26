@@ -134,7 +134,7 @@ class OffreController extends Controller
     public function destroy(Offre $offre)
     {
        $offre->delete();
-        return redirect()->route("offres.index")->with("success", "L'offre a été supprimé avec succès");
+        return redirect()->route("offres.index")->with("success", "L'offre a été supprimé avec succès"); 
 
     }
     public function importation()
